@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym 24h - Acessos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <h1>Bem-vindo ao Gym 24h</h1>
+        <p>
+          Escolha o acesso ideal para treinar quando quiser. Pague online e
+          receba o QR Code na hora para abrir a porta.
+        </p>
+        <a class="hero__cta" href="#planos">Ver planos disponíveis</a>
+      </div>
+      <div class="hero__image" aria-hidden="true">
+        <div class="hero__badge">Aberto 24h</div>
+        <div class="hero__circle hero__circle--primary"></div>
+        <div class="hero__circle hero__circle--secondary"></div>
+      </div>
+    </header>
+
+    <main>
+      <section id="planos" class="plans">
+        <header class="plans__header">
+          <h2>Planos de acesso</h2>
+          <p>Flexibilidade para visitantes ocasionais e alunos frequentes.</p>
+        </header>
+        <div class="plans__grid" id="plans-grid"></div>
+      </section>
+
+      <section class="faq">
+        <div class="faq__card">
+          <h3>Como funciona?</h3>
+          <ol>
+            <li>Escolha o plano desejado e clique em &quot;Comprar&quot;.</li>
+            <li>Informe seus dados e confirme o pagamento.</li>
+            <li>Receba imediatamente o QR Code para abrir a porta do Gym 24h.</li>
+          </ol>
+        </div>
+        <div class="faq__card faq__card--highlight">
+          <h3>Dúvidas frequentes</h3>
+          <p><strong>O QR Code é único?</strong> Sim, ele é gerado com um identificador exclusivo para o seu acesso.</p>
+          <p><strong>Posso compartilhar?</strong> Por segurança, recomendamos o uso individual. A equipe monitora cada validação.</p>
+          <p><strong>E se eu perder o código?</strong> Você recebe o QR Code por e-mail e pode gerar novamente na área do cliente.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <strong>Gym 24h</strong>
+        <p>Rua Movimento, 123 - Centro</p>
+      </div>
+      <div>
+        <p>Contato: <a href="mailto:contato@gym24h.com">contato@gym24h.com</a></p>
+        <p>Telefone: <a href="tel:+551199999999">(11) 99999-9999</a></p>
+      </div>
+    </footer>
+
+    <div class="modal" id="purchase-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__overlay" data-close="true"></div>
+      <div class="modal__content" role="document">
+        <button class="modal__close" type="button" data-close="true" aria-label="Fechar">&times;</button>
+        <div class="modal__body">
+          <div class="modal__summary">
+            <h3 id="modal-plan-title"></h3>
+            <p class="modal__price" id="modal-plan-price"></p>
+            <ul class="modal__features" id="modal-plan-features"></ul>
+          </div>
+          <form id="checkout-form" class="modal__form">
+            <div class="form__group">
+              <label for="customer-name">Nome completo</label>
+              <input type="text" id="customer-name" name="name" required placeholder="Ex.: Joana Silva" />
+            </div>
+            <div class="form__group">
+              <label for="customer-email">E-mail</label>
+              <input type="email" id="customer-email" name="email" required placeholder="voce@email.com" />
+            </div>
+            <div class="form__group">
+              <label for="customer-phone">Telefone</label>
+              <input type="tel" id="customer-phone" name="phone" placeholder="(11) 91234-5678" />
+            </div>
+            <div class="form__group">
+              <label for="start-date">Início do acesso</label>
+              <input type="date" id="start-date" name="startDate" required />
+            </div>
+            <button id="confirm-purchase" class="btn btn--primary" type="submit">Confirmar compra</button>
+            <p class="form__note">Pagamento seguro via cartão ou PIX.</p>
+          </form>
+        </div>
+        <div class="modal__result" id="purchase-result" hidden>
+          <h3>Compra concluída!</h3>
+          <p>Apresente o QR Code abaixo na entrada do Gym 24h.</p>
+          <canvas id="qr-code-canvas" role="img" aria-label="QR Code de acesso"></canvas>
+          <div class="modal__details" id="purchase-details"></div>
+          <button class="btn" type="button" id="new-purchase">Fechar</button>
+        </div>
+        <div class="modal__loading" id="purchase-loading" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <p>Processando pagamento...</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
